@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .navbar {
+            background-color: #1a1a2e;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 18px;
+        }
+        .menu {
+            width: 200px;
+            background-color: #2c2c3e;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            color: white;
+        }
+        .menu h2 {
+            margin: 0 0 20px;
+        }
+        .menu button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #444;
+            border: none;
+            color: white;
+            cursor: pointer;
+            text-align: left;
+        }
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .card h3 {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </div>
+    
+    <div class="menu">
+        <h2>Menu</h2>
+        <button>Dashboard</button>
+        <button>Profile</button>
+        <button>Settings</button>
+        <button>Logout</button>
+    </div>
+    
+    <div class="content">
+        <div class="card">
+            <img src="Beautiful Nature.png" alt="Beautiful Nature">
+            <h3>Beautiful Nature</h3>
+            <p>Experience the beauty of nature and the outdoors.</p>
+        </div>
+        <div class="card">
+            <img src="Modern Technology.png" alt="Modern Technology">
+            <h3>Modern Technology</h3>
+            <p>Explore the latest advancements in technology.</p>
+        </div>
+        <div class="card">
+            <img src="amazing architecture.jpg" alt="Amazing Architecture">
+            <h3>Amazing Architecture</h3>
+            <p>Discover stunning architectural designs.</p>
+        </div>
+    </div>
+</body>
+</html>
