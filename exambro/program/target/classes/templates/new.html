@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/style.css}" />
+  <title>Create New Coffee</title>
+</head>
+<body>
+<h1>Create New Coffee</h1>
+<div>
+  <form th:action="@{/save}" method="POST">
+    <!-- Coffee Name -->
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter Coffee Name" required />
+    </div>
+
+    <!-- Coffee Type -->
+    <div>
+      <label for="type">Type:</label>
+      <input type="text" id="type" name="type" placeholder="e.g., Espresso, Latte" required />
+    </div>
+
+    <!-- Coffee Size -->
+    <div>
+      <label for="size">Size:</label>
+      <input type="text" id="size" name="size" placeholder="e.g., Small, Medium, Large" required />
+    </div>
+
+    <!-- Coffee Price -->
+    <div>
+      <label for="price">Price:</label>
+      <input type="number" step="0.01" id="price" name="price" placeholder="Enter Price (e.g., 3.50)" required />
+    </div>
+
+    <!-- Roast Level -->
+    <div>
+      <label for="roastLevel">Roast Level:</label>
+      <input type="text" id="roastLevel" name="roastLevel" placeholder="e.g., Light, Medium, Dark" required />
+    </div>
+
+    <!-- Coffee Origin -->
+    <div>
+      <label for="origin">Origin:</label>
+      <input type="text" id="origin" name="origin" placeholder="Enter Origin (e.g., Ethiopia)" required />
+    </div>
+
+    <!-- Is Decaf -->
+    <div>
+      <label for="isDecaf">Decaf:</label>
+      <input type="hidden" name="isDecaf" value="false" />
+      <input type="checkbox" id="isDecaf" name="isDecaf" value="true" />
+      <span>Check if Decaf</span>
+    </div>
+
+    <!-- Stock Quantity -->
+    <div>
+      <label for="stock">Stock:</label>
+      <input type="number" id="stock" name="stock" placeholder="Enter Stock Quantity" required />
+    </div>
+
+    <!-- Flavor Notes -->
+    <div>
+      <label for="flavorNotes">Flavor Notes:</label>
+      <input type="text" id="flavorNotes" name="flavorNotes" placeholder="Separate notes with commas (e.g., Chocolate, Nutty)" required />
+    </div>
+
+    <!-- Brew Method -->
+    <div>
+      <label for="brewMethod">Brew Method:</label>
+      <input type="text" id="brewMethod" name="brewMethod" placeholder="e.g., French Press, Espresso" required />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit">Save Coffee</button>
+  </form>
+
+  <br />
+  <a href="/">Back to Coffee List</a>
+</div>
+</body>
+</html>
