@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Coffee</title>
+</head>
+<body>
+<h1>Edit Coffee</h1>
+<form action="/api/coffees/{id}" method="post">
+    <input type="hidden" name="_method" value="put">
+
+    <div>
+        <label for="name">Coffee Name:</label>
+        <input type="text" id="name" name="name" value="[COFFEE_NAME]" required>
+    </div>
+    <button type="submit">Update Coffee</button>
+</form>
+<p><a href="/list.html">Back to Coffee List</a></p>
+</body>
+</html>

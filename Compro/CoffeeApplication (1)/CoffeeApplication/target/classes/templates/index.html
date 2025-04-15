@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Properties and Validation Rules</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white">
+<div class="flex justify-between items-center p-4">
+    <div class="text-green-500">4:12</div>
+    <div class="flex space-x-2">
+        <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+    </div>
+</div>
+<div class="text-center text-xl font-semibold mb-4">Coffee Properties and Validation Rules</div>
+<div class="overflow-x-auto px-4">
+    <table class="min-w-full bg-white text-black">
+        <thead>
+        <tr>
+            <th class="px-4 py-2 border">Property</th>
+            <th class="px-4 py-2 border">Required</th>
+            <th class="px-4 py-2 border">HTML Field Type</th>
+            <th class="px-4 py-2 border">Validation Rules</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="px-4 py-2 border">name</td>
+            <td class="px-4 py-2 border">Yes</td>
+            <td class="px-4 py-2 border">&lt;input type="text"&gt;</td>
+            <td class="px-4 py-2 border">required, minlength="2", maxlength="50"</td>
+        </tr>
+        <tr>
+            <td class="px-4 py-2 border">type</td>
+            <td class="px-4 py-2 border">Yes</td>
+            <td class="px-4 py-2 border">&lt;select&gt;</td>
+            <td class="px-4 py-2 border">required, options like "Arabica", "Robusta"</td>
+        </tr>
+        <tr>
+            <td class="px-4 py-2 border">size</td>
+            <td class="px-4 py-2 border">Yes</td>
+            <td class="px-4 py-2 border">&lt;select&gt;</td>
+            <td class="px-4 py-2 border">required, options "Small", "Medium", "Large"</td>
+        </tr>
+        <tr>
+            <td class="px-4 py-2 border">price</td>
+            <td class="px-4 py-2 border">Yes</td>
+            <td class="px-4 py-2 border">&lt;input type="number"&gt;</td>
+            <td class="px-4 py-2 border">required, min="0.01", step="0.01"</td>
+        </tr>
+        <tr>
+            <td class="px-4 py-2 border">roastLevel</td>
+            <td class="px-4 py-2 border">Yes</td>
+            <td class="px-4 py-2 border">&lt;select&gt;</td>
+            <td class="px-4 py-2 border">required, options "Light", "Medium", "Dark"</td>
+        </tr>
+        <tr>
+            <td class="px-4 py-2 border">origin</td>
+            <td class="px-4 py-2 border">No</td>
+            <td class="px-4 py-2 border">&lt;input type="text"&gt;</td>
+            <td class="px-4 py-2 border">maxlength="100"</td>
+        </tr>
+        <tr>
+            <td class="px-4 py-2 border">isDecaf</td>
+            <td class="px-4 py-2 border">No</td>
+            <td class="px-4 py-2 border">&lt;input type="checkbox"&gt;</td>
+            <td class="px-4 py-2 border">Optional checkbox</td>
+        </tr>
+        <tr>
+            <td class="px-4 py-2 border">stock</td>
+            <td class="px-4 py-2 border">Yes</td>
+            <td class="px-4 py-2 border">&lt;input type="number"&gt;</td>
+            <td class="px-4 py-2 border">required, min="0"</td>
+        </tr>
+        <tr>
+            <td class="px-4 py-2 border">flavorNotes</td>
+            <td class="px-4 py-2 border">No</td>
+            <td class="px-4 py-2 border">&lt;input type="checkbox"&gt; group</td>
+            <td class="px-4 py-2 border">Multiple checkboxes (e.g., "Chocolate", "Citrus", etc.)</td>
+        </tr>
+        <tr>
+            <td class="px-4 py-2 border">brewMethod</td>
+            <td class="px-4 py-2 border">Yes</td>
+            <td class="px-4 py-2 border">&lt;select&gt;</td>
+            <td class="px-4 py-2 border">required, options "Drip", "French Press", "Espresso"</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
