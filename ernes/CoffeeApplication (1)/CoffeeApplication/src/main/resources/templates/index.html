@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Coffee List</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Light gray background */
+    color: #333; /* Dark gray text */
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #555; /* Medium gray for heading */
+    padding: 20px 0;
+    background-color: #eee; /* Light gray background for heading */
+    margin: 0;
+}
+
+/* Search Form */
+form {
+    text-align: center;
+    padding: 20px 0;
+}
+
+input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 4px;
+    width: 200px;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #444; /* Dark gray button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #666; /* Slightly lighter gray on hover */
+}
+
+/* Coffee Table */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff; /* White table background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Light gray border */
+}
+
+th {
+    background-color: #555; /* Medium gray header */
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Very light gray for even rows */
+}
+
+tbody tr:hover {
+    background-color: #eee; /* Light gray on hover */
+}
+
+/* Actions */
+td a {
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 2px 5px;
+    background-color: #666; /* Dark gray buttons */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+td a:hover {
+    background-color: #888; /* Slightly lighter gray on hover */
+}
+
+/* Add Coffee Link */
+a[href="/add"] {
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+    margin: 20px auto;
+    width: 150px;
+    background-color: #333; /* Dark gray background */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+a[href="/add"]:hover {
+    background-color: #555; /* Slightly lighter gray on hover */
+}
+
+    </style>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<h1>Available coffees</h1>
+
+<!-- Search Form -->
+<form th:action="@{`/`}" method="get">
+    <input type="text" name="search" placeholder="Search for coffee..." th:value="${search}" />
+    <button type="submit">Search</button>
+</form>
+
+<!-- Coffee Table -->
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Size</th>
+        <th>Price</th>
+        <th>Roast Level</th>
+        <th>Origin</th>
+        <th>Decaf</th>
+        <th>Stock</th>
+        <th>Flavor Notes</th>
+        <th>Brew Method</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="coffee : ${coffees}">
+        <td th:text="${coffee.id}"></td>
+        <td th:text="${coffee.name}"></td>
+        <td th:text="${coffee.type}"></td>
+        <td th:text="${coffee.size}"></td>
+        <td th:text="${coffee.price}"></td>
+        <td th:text="${coffee.roastLevel}"></td>
+        <td th:text="${coffee.origin}"></td>
+        <td th:text="${coffee.decaf ? 'Yes' : 'No'}"></td>
+        <td th:text="${coffee.stock}"></td>
+        <td th:text="${coffee.flavorNotes}"></td>
+        <td th:text="${coffee.brewMethod}"></td>
+        <td>
+            <a th:href="@{`/edit(id=${coffee.id})`}">Edit</a>
+            <a th:href="@{`/delete?id=${coffee.id}`}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Add Coffee Link -->
+<a href="/add">Add New Coffee</a>
+</body>
+</html>

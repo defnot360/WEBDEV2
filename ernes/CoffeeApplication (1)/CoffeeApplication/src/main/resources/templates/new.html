@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Coffee</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<h1>Edit Coffee</h1>
+<form th:action="@{/update}" method="post">
+    <!-- Hidden field for Coffee ID -->
+    <input type="hidden" name="id" th:value="${coffee.id}" />
+
+    <!-- Editable fields for coffee properties -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:value="${coffee.name}" placeholder="Enter Name" required />
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" name="type" th:value="${coffee.type}" placeholder="Enter Type" required />
+
+    <label for="size">Size:</label>
+    <input type="text" id="size" name="size" th:value="${coffee.size}" placeholder="Enter Size" required />
+
+    <label for="price">Price:</label>
+    <input type="number" step="0.01" id="price" name="price" th:value="${coffee.price}" placeholder="Enter Price" required />
+
+    <label for="roastLevel">Roast Level:</label>
+    <input type="text" id="roastLevel" name="roastLevel" th:value="${coffee.roastLevel}" placeholder="Enter Roast Level" required />
+
+    <label for="origin">Origin:</label>
+    <input type="text" id="origin" name="origin" th:value="${coffee.origin}" placeholder="Enter Origin" required />
+
+    <label for="isDecaf">Decaf:</label>
+    <input type="checkbox" id="isDecaf" name="isDecaf" th:checked="${coffee.decaf}" value="true" />
+    <span>Check if Decaf</span>
+
+    <label for="stock">Stock:</label>
+    <input type="number" id="stock" name="stock" th:value="${coffee.stock}" placeholder="Enter Stock Quantity" required />
+
+    <label for="flavorNotes">Flavor Notes:</label>
+    <input type="text" id="flavorNotes" name="flavorNotes" th:value="${coffee.flavorNotes}" placeholder="Enter Flavor Notes (e.g., Chocolate;Nutty)" required />
+
+    <label for="brewMethod">Brew Method:</label>
+    <input type="text" id="brewMethod" name="brewMethod" th:value="${coffee.brewMethod}" placeholder="Enter Brew Method" required />
+
+    <!-- Submit button -->
+    <button type="submit">Update Coffee</button>
+</form>
+
+<!-- Back link -->
+<a href="/">Back to Coffee List</a>
+</body>
+</html>
