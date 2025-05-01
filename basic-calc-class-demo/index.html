@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .calculator {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .calculator::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 105, 180, 0.4);
+            z-index: -1;
+        }
+        
+        .calculator::after {
+            content: "";
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(64, 224, 208, 0.4);
+            z-index: -1;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 25px;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            height: 3px;
+            width: 70%;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            bottom: -5px;
+            left: 15%;
+            border-radius: 3px;
+        }
+        
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        input {
+            width: 47%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        input:focus {
+            border-color: #4ecdc4;
+            box-shadow: 0 0 8px rgba(78, 205, 196, 0.4);
+        }
+        
+        .buttons-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        button {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: white;
+            font-weight: 600;
+        }
+        
+        #add {
+            background: linear-gradient(135deg, #ff6b6b, #ee5253);
+            box-shadow: 0 4px 8px rgba(238, 82, 83, 0.3);
+        }
+        
+        #subtract {
+            background: linear-gradient(135deg, #ff9ff3, #f368e0);
+            box-shadow: 0 4px 8px rgba(243, 104, 224, 0.3);
+        }
+        
+        #multiply {
+            background: linear-gradient(135deg, #48dbfb, #0abde3);
+            box-shadow: 0 4px 8px rgba(10, 189, 227, 0.3);
+        }
+        
+        #divide {
+            background: linear-gradient(135deg, #1dd1a1, #10ac84);
+            box-shadow: 0 4px 8px rgba(16, 172, 132, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .result-container {
+            background: #f6f6f6;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-label {
+            font-weight: 600;
+            color: #555;
+            margin-right: 10px;
+        }
+        
+        #result {
+            color: #222;
+            font-size: 18px;
+            min-height: 24px;
+            display: inline-block;
+        }
+        
+        /* Decorative elements */
+        .deco-circle {
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .circle1 {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 107, 107, 0.3);
+            top: 20px;
+            right: 30px;
+        }
+        
+        .circle2 {
+            width: 20px;
+            height: 20px;
+            background: rgba(72, 219, 251, 0.3);
+            bottom: 40px;
+            left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="deco-circle circle1"></div>
+        <div class="deco-circle circle2"></div>
+        
+        <h1>Simple Calculator</h1>
+        
+        <div class="input-row">
+            <input type="number" id="firstNumber" placeholder="First number">
+            <input type="number" id="secondNumber" placeholder="Second number">
+        </div>
+        
+        <div class="buttons-row">
+            <button id="add" onclick="calculate('+')">+</button>
+            <button id="subtract" onclick="calculate('-')">-</button>
+            <button id="multiply" onclick="calculate('*')">*</button>
+            <button id="divide" onclick="calculate('/')">/</button>
+        </div>
+        
+        <div class="result-container">
+            <span class="result-label">Result:</span>
+            <span id="result"></span>
+        </div>
+    </div>
+    
+    <script>
+        function calculate(operation) {
+            // Get the input values
+            const firstNumber = parseFloat(document.getElementById("firstNumber").value);
+            const secondNumber = parseFloat(document.getElementById("secondNumber").value);
+            
+            // Check if the inputs are valid
+            if (isNaN(firstNumber) || isNaN(secondNumber)) {
+                document.getElementById("result").textContent = "Please enter valid numbers";
+                return;
+            }
+            
+            // Perform the calculation
+            let result;
+            switch (operation) {
+                case '+':
+                    result = firstNumber + secondNumber;
+                    break;
+                case '-':
+                    result = firstNumber - secondNumber;
+                    break;
+                case '*':
+                    result = firstNumber * secondNumber;
+                    break;
+                case '/':
+                    if (secondNumber === 0) {
+                        document.getElementById("result").textContent = "Cannot divide by zero";
+                        return;
+                    }
+                    result = firstNumber / secondNumber;
+                    break;
+            }
+            
+            // Format and display the result
+            if (Number.isInteger(result)) {
+                document.getElementById("result").textContent = result;
+            } else {
+                // Format to at most 4 decimal places
+                document.getElementById("result").textContent = result.toFixed(4).replace(/\.?0+$/, '');
+            }
+            
+            // Add a visual feedback for the result
+            const resultContainer = document.querySelector('.result-container');
+            resultContainer.style.animation = 'none';
+            setTimeout(() => {
+                resultContainer.style.animation = 'pulse 0.5s';
+            }, 10);
+        }
+        
+        // Add keypress support for better UX
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                // Default to addition when Enter is pressed
+                calculate('+');
+            }
+        });
+    </script>
+</body>
+</html>
