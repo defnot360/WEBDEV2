@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<div th:if="${message}" class="message" th:text="${message}" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Add New Coffee</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Add New Coffee</h1>
+<style>
+    body {
+    background: #f7f3ec;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #6b4f27;
+    margin-top: 30px;
+}
+
+form {
+    background: #fff;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 30px 40px 20px 40px;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4b3f2c;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 8px 10px;
+    margin: 6px 0 16px 0;
+    border: 1px solid #cfc6b8;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: #f9f6f2;
+    box-sizing: border-box;
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border: 1.5px solid #b6935b;
+    outline: none;
+}
+
+input[type="checkbox"] {
+    margin-right: 7px;
+}
+
+button[type="submit"] {
+    background: #b6935b;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+    background: #6b4f27;
+}
+
+.message {
+    background: #e6d3b3;
+    color: #6b4f27;
+    padding: 10px 20px;
+    margin: 20px auto 0 auto;
+    max-width: 500px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+}
+
+a {
+    display: block;
+    text-align: center;
+    color: #b6935b;
+    margin-top: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #6b4f27;
+}
+
+img#imagePreview {
+    display: block;
+    margin: 12px auto 0 auto;
+    border-radius: 9px;
+    border: 1px solid #e0d1bb;
+    background: #f7f3ec;
+    box-shadow: 0 2px 8px rgba(182,147,91,0.05);
+    max-width: 200px;
+    max-height: 200px;
+}
+
+</style>
+
+<form action="/save" method="post">
+    <label>Name:
+        <input type="text" name="name" required minlength="2" maxlength="50">
+    </label><br>
+
+    <label>Type:
+        <select name="type" required>
+            <option value="" disabled selected>Select Type</option>
+            <option value="Cold brew">Cold brew</option>
+            <option value="Café au lait">Café au lait</option>
+            <option value="Mocha">Mocha</option>
+            <option value="Arabica">Arabica</option>
+            <option value="Robusta">Robusta</option>
+        </select>
+    </label><br>
+
+    <label>Size:
+        <select name="size" required>
+            <option value="" disabled selected>Select Size</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+    </label><br>
+
+    <label>Price:
+        <input type="number" name="price" step="0.01" required min="0.01">
+    </label><br>
+
+    <label>Roast Level:
+        <select name="roastLevel" required>
+            <option value="" disabled selected>Select Roast Level</option>
+            <option value="Light">Light</option>
+            <option value="Medium">Medium</option>
+            <option value="Dark">Dark</option>
+        </select>
+    </label><br>
+
+    <label>Coffee Origin:
+        <input type="text" name="origin" maxlength="100">
+    </label><br>
+
+    <label>Coffee Decaf:
+        <input type="checkbox" name="isDecaf" value="true">
+    </label><br>
+
+    <label>Stock:
+        <input type="number" name="stock" required min="1">
+    </label><br>
+
+    <label>Flavor Notes:</label><br>
+    <input type="checkbox" name="flavorNotes" value="Chocolate"> Chocolate <br>
+    <input type="checkbox" name="flavorNotes" value="Citrus"> Citrus <br>
+    <input type="checkbox" name="flavorNotes" value="Nutty"> Nutty <br>
+    <input type="checkbox" name="flavorNotes" value="Creamy"> Creamy <br>
+    <input type="checkbox" name="flavorNotes" value="Sweet"> Sweet <br>
+    <input type="checkbox" name="flavorNotes" value="Fruity"> Fruity <br>
+    <input type="checkbox" name="flavorNotes" value="Bold"> Bold <br>
+    <input type="checkbox" name="flavorNotes" value="Smooth"> Smooth <br>
+    <input type="checkbox" name="flavorNotes" value="Balanced"> Balanced <br>
+    <input type="checkbox" name="flavorNotes" value="Caramel"> Caramel <br>
+    <input type="checkbox" name="flavorNotes" value="Almond"> Almond <br>
+    <input type="checkbox" name="flavorNotes" value="Cinnamon"> Cinnamon <br>
+    <input type="checkbox" name="flavorNotes" value="Woody"> Woody <br>
+    <input type="checkbox" name="flavorNotes" value="Vanilla"> Vanilla <br>
+
+    <label>Brew Method:
+        <select name="brewMethod" required>
+            <option value="" disabled selected>Select Brew Method</option>
+            <option value="Drip">Drip</option>
+            <option value="French Press">French Press</option>
+            <option value="Espresso">Espresso</option>
+        </select>
+    </label><br>
+
+    <!-- ✅ New: Image URL input -->
+    <label>Image URL:
+        <input type="text" name="imageUrl" placeholder="https://example.com/image.jpg" oninput="updateImagePreview(this.value)" required>
+    </label><br>
+
+    <!-- ✅ New: Live Image Preview -->
+    <div>
+        <strong>Image Preview:</strong><br>
+        <img id="imagePreview" src="" alt="Coffee Image Preview" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
+    </div>
+
+    <script>
+        function updateImagePreview(url) {<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Coffee</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Add New Coffee</h1>
+
+<form action="/save" method="post">
+    <label>Name:
+        <input type="text" name="name" required minlength="2" maxlength="50">
+    </label><br>
+
+    <label>Type:
+        <select name="type" required>
+            <option value="" disabled selected>Select Type</option>
+            <option value="Cold brew">Cold brew</option>
+            <option value="Café au lait">Café au lait</option>
+            <option value="Mocha">Mocha</option>
+            <option value="Arabica">Arabica</option>
+            <option value="Robusta">Robusta</option>
+        </select>
+    </label><br>
+
+    <label>Size:
+        <select name="size" required>
+            <option value="" disabled selected>Select Size</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+    </label><br>
+
+    <label>Price:
+        <input type="number" name="price" step="0.01" required min="0.01">
+    </label><br>
+
+    <label>Roast Level:
+        <select name="roastLevel" required>
+            <option value="" disabled selected>Select Roast Level</option>
+            <option value="Light">Light</option>
+            <option value="Medium">Medium</option>
+            <option value="Dark">Dark</option>
+        </select>
+    </label><br>
+
+    <label>Coffee Origin:
+        <input type="text" name="origin" maxlength="100">
+    </label><br>
+
+    <label>Coffee Decaf:
+        <input type="checkbox" name="isDecaf" value="true">
+    </label><br>
+
+    <label>Stock:
+        <input type="number" name="stock" required min="1">
+    </label><br>
+
+    <label>Flavor Notes:</label><br>
+    <input type="checkbox" name="flavorNotes" value="Chocolate"> Chocolate <br>
+    <input type="checkbox" name="flavorNotes" value="Citrus"> Citrus <br>
+    <input type="checkbox" name="flavorNotes" value="Nutty"> Nutty <br>
+    <input type="checkbox" name="flavorNotes" value="Creamy"> Creamy <br>
+    <input type="checkbox" name="flavorNotes" value="Sweet"> Sweet <br>
+    <input type="checkbox" name="flavorNotes" value="Fruity"> Fruity <br>
+    <input type="checkbox" name="flavorNotes" value="Bold"> Bold <br>
+    <input type="checkbox" name="flavorNotes" value="Smooth"> Smooth <br>
+    <input type="checkbox" name="flavorNotes" value="Balanced"> Balanced <br>
+    <input type="checkbox" name="flavorNotes" value="Caramel"> Caramel <br>
+    <input type="checkbox" name="flavorNotes" value="Almond"> Almond <br>
+    <input type="checkbox" name="flavorNotes" value="Cinnamon"> Cinnamon <br>
+    <input type="checkbox" name="flavorNotes" value="Woody"> Woody <br>
+    <input type="checkbox" name="flavorNotes" value="Vanilla"> Vanilla <br>
+
+    <label>Brew Method:
+        <select name="brewMethod" required>
+            <option value="" disabled selected>Select Brew Method</option>
+            <option value="Drip">Drip</option>
+            <option value="French Press">French Press</option>
+            <option value="Espresso">Espresso</option>
+        </select>
+    </label><br>
+
+    <!-- ✅ New: Image URL input -->
+    <label>Image URL:
+        <input type="text" name="imageUrl" placeholder="https://example.com/image.png" oninput="updateImagePreview(this.value)" required>
+    </label><br>
+
+    <!-- ✅ New: Live Image Preview -->
+    <div>
+        <strong>Image Preview:</strong><br>
+        <img id="imagePreview" src="" alt="Coffee Image Preview" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
+    </div>
+
+    <script>
+        function updateImagePreview(url) {
+            document.getElementById('imagePreview').src = url;
+        }
+    </script>
+
+    <br>
+    <button type="submit">Add Coffee</button>
+</form>
+
+<a href="/">Back to List</a>
+
+</body>
+</html>
+
+
+
+</script>
+
+<br>
+<button type="submit">Add Coffee</button>
+</form>
+
+<a href="/">Back to List</a>
+
+</body>

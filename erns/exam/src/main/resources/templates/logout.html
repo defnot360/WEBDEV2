@@ -1,0 +1,86 @@
+
+Debie
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Coffee</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Edit Coffee</h1>
+
+<form action="/update" method="post">
+    <input type="hidden" name="id" th:value="${coffee.id}">
+
+    <label>Coffee Name:
+        <input type="text" name="name" th:value="${coffee.name}" required minlength="2" maxlength="50">
+    </label><br>
+
+    <label>Coffee Type:
+        <select name="type" required>
+            <option value="Arabica" th:selected="${coffee.type == 'Arabica'}">Arabica</option>
+            <option value="Robusta" th:selected="${coffee.type == 'Robusta'}">Robusta</option>
+        </select>
+    </label><br>
+
+    <label>Coffee Size:
+        <select name="size" required>
+            <option value="Small" th:selected="${coffee.size == 'Small'}">Small</option>
+            <option value="Medium" th:selected="${coffee.size == 'Medium'}">Medium</option>
+            <option value="Large" th:selected="${coffee.size == 'Large'}">Large</option>
+        </select>
+    </label><br>
+
+    <label>Coffee Price:
+        <input type="number" name="price" th:value="${coffee.price}" step="0.01" required min="0.01">
+    </label><br>
+
+    <label>Coffee Roast Level:
+        <select name="roastLevel" required>
+            <option value="Light" th:selected="${coffee.roastLevel == 'Light'}">Light</option>
+            <option value="Medium" th:selected="${coffee.roastLevel == 'Medium'}">Medium</option>
+            <option value="Dark" th:selected="${coffee.roastLevel == 'Dark'}">Dark</option>
+        </select>
+    </label><br>
+
+    <label>Coffee Origin:
+        <input type="text" name="origin" th:value="${coffee.origin}" maxlength="100">
+    </label><br>
+
+    <label>Coffee Decaf:
+        <input type="checkbox" name="isDecaf" th:checked="${coffee.isDecaf}" />
+    </label><br>
+
+
+    <label>Coffee Stock:
+        <input type="number" name="stock" th:value="${coffee.stock}" required min="1">
+    </label><br>
+
+    <label>Flavor Notes:</label><br>
+    <input type="checkbox" name="flavorNotes" value="Creamy" th:checked="${coffee.flavorNotes.contains('Creamy')}"> Creamy <br>
+    <input type="checkbox" name="flavorNotes" value="Sweet" th:checked="${coffee.flavorNotes.contains('Sweet')}"> Sweet <br>
+    <input type="checkbox" name="flavorNotes" value="Fruity" th:checked="${coffee.flavorNotes.contains('Fruity')}"> Fruity <br>
+    <input type="checkbox" name="flavorNotes" value="Bold" th:checked="${coffee.flavorNotes.contains('Bold')}"> Bold <br>
+    <input type="checkbox" name="flavorNotes" value="Chocolate" th:checked="${coffee.flavorNotes.contains('Chocolate')}"> Chocolate <br>
+    <input type="checkbox" name="flavorNotes" value="Smooth" th:checked="${coffee.flavorNotes.contains('Smooth')}"> Smooth <br>
+    <input type="checkbox" name="flavorNotes" value="Citrus" th:checked="${coffee.flavorNotes.contains('Citrus')}"> Citrus <br>
+    <input type="checkbox" name="flavorNotes" value="Balanced" th:checked="${coffee.flavorNotes.contains('Balanced')}"> Balanced <br>
+    <input type="checkbox" name="flavorNotes" value="Nutty" th:checked="${coffee.flavorNotes.contains('Nutty')}"> Nutty <br>
+
+    <label>Brew Method:
+        <select name="brewMethod" required>
+            <option value="Drip" th:selected="${coffee.brewMethod == 'Drip'}">Drip</option>
+            <option value="French Press" th:selected="${coffee.brewMethod == 'French Press'}">French Press</option>
+            <option value="Espresso" th:selected="${coffee.brewMethod == 'Espresso'}">Espresso</option>
+        </select>
+    </label><br>
+
+    <button type="submit">Update Coffee</button>
+</form>
+
+<a href="/">Back to List</a>
+
+</body>
+</html>
+www.w3.org

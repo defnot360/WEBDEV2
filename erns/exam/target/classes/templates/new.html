@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<div th:if="${message}" class="message" th:text="${message}" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Coffee</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            background: #f5f5f5; /* Soft gray background */
+            color: #333;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #424242; /* Dark gray for headings */
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        form {
+            background: #eeeeee; /* Light gray for the form */
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(100, 100, 100, 0.10);
+            padding: 32px 40px;
+            max-width: 500px;
+            margin: 40px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #616161; /* Medium gray for labels */
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #bdbdbd;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            background: #fff;
+            font-size: 1em;
+        }
+
+        input[type="checkbox"] {
+            accent-color: #757575; /* Gray checkboxes */
+            margin-right: 6px;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(90deg, #757575 0%, #bdbdbd 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 28px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 16px;
+            box-shadow: 0 2px 8px rgba(100, 100, 100, 0.15);
+            transition: background 0.2s;
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(90deg, #424242 0%, #757575 100%);
+        }
+
+        .message {
+            background: #e0e0e0;
+            color: #424242;
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        a {
+            color: #424242;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #imagePreview {
+            border: 2px solid #bdbdbd;
+            border-radius: 8px;
+            background: #fff;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<h1>Add New Coffee</h1>
+
+<form action="/save" method="post">
+    <label>Name:
+        <input type="text" name="name" required minlength="2" maxlength="50">
+    </label><br>
+
+    <label>Type:
+        <select name="type" required>
+            <option value="" disabled selected>Select Type</option>
+            <option value="Cold brew">Cold brew</option>
+            <option value="Café au lait">Café au lait</option>
+            <option value="Mocha">Mocha</option>
+            <option value="Arabica">Arabica</option>
+            <option value="Robusta">Robusta</option>
+        </select>
+    </label><br>
+
+    <label>Size:
+        <select name="size" required>
+            <option value="" disabled selected>Select Size</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+    </label><br>
+
+    <label>Price:
+        <input type="number" name="price" step="0.01" required min="0.01">
+    </label><br>
+
+    <label>Roast Level:
+        <select name="roastLevel" required>
+            <option value="" disabled selected>Select Roast Level</option>
+            <option value="Light">Light</option>
+            <option value="Medium">Medium</option>
+            <option value="Dark">Dark</option>
+        </select>
+    </label><br>
+
+    <label>Coffee Origin:
+        <input type="text" name="origin" maxlength="100">
+    </label><br>
+
+    <label>Coffee Decaf:
+        <input type="checkbox" name="isDecaf" value="true">
+    </label><br>
+
+    <label>Stock:
+        <input type="number" name="stock" required min="1">
+    </label><br>
+
+    <label>Flavor Notes:</label><br>
+    <input type="checkbox" name="flavorNotes" value="Chocolate"> Chocolate <br>
+    <input type="checkbox" name="flavorNotes" value="Citrus"> Citrus <br>
+    <input type="checkbox" name="flavorNotes" value="Nutty"> Nutty <br>
+    <input type="checkbox" name="flavorNotes" value="Creamy"> Creamy <br>
+    <input type="checkbox" name="flavorNotes" value="Sweet"> Sweet <br>
+    <input type="checkbox" name="flavorNotes" value="Fruity"> Fruity <br>
+    <input type="checkbox" name="flavorNotes" value="Bold"> Bold <br>
+    <input type="checkbox" name="flavorNotes" value="Smooth"> Smooth <br>
+    <input type="checkbox" name="flavorNotes" value="Balanced"> Balanced <br>
+    <input type="checkbox" name="flavorNotes" value="Caramel"> Caramel <br>
+    <input type="checkbox" name="flavorNotes" value="Almond"> Almond <br>
+    <input type="checkbox" name="flavorNotes" value="Cinnamon"> Cinnamon <br>
+    <input type="checkbox" name="flavorNotes" value="Woody"> Woody <br>
+    <input type="checkbox" name="flavorNotes" value="Vanilla"> Vanilla <br>
+
+    <label>Brew Method:
+        <select name="brewMethod" required>
+            <option value="" disabled selected>Select Brew Method</option>
+            <option value="Drip">Drip</option>
+            <option value="French Press">French Press</option>
+            <option value="Espresso">Espresso</option>
+        </select>
+    </label><br>
+
+    <!-- ✅ New: Image URL input -->
+    <label>Image URL:
+        <input type="text" name="imageUrl" placeholder="https://example.com/image.jpg" oninput="updateImagePreview(this.value)" required>
+    </label><br>
+
+    <!-- ✅ New: Live Image Preview -->
+    <div>
+        <strong>Image Preview:</strong><br>
+        <img id="imagePreview" src="" alt="Coffee Image Preview" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
+    </div>
+
+    <script>
+        function updateImagePreview(url) {<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Coffee</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Add New Coffee</h1>
+
+<form action="/save" method="post">
+    <label>Name:
+        <input type="text" name="name" required minlength="2" maxlength="50">
+    </label><br>
+
+    <label>Type:
+        <select name="type" required>
+            <option value="" disabled selected>Select Type</option>
+            <option value="Cold brew">Cold brew</option>
+            <option value="Café au lait">Café au lait</option>
+            <option value="Mocha">Mocha</option>
+            <option value="Arabica">Arabica</option>
+            <option value="Robusta">Robusta</option>
+        </select>
+    </label><br>
+
+    <label>Size:
+        <select name="size" required>
+            <option value="" disabled selected>Select Size</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+    </label><br>
+
+    <label>Price:
+        <input type="number" name="price" step="0.01" required min="0.01">
+    </label><br>
+
+    <label>Roast Level:
+        <select name="roastLevel" required>
+            <option value="" disabled selected>Select Roast Level</option>
+            <option value="Light">Light</option>
+            <option value="Medium">Medium</option>
+            <option value="Dark">Dark</option>
+        </select>
+    </label><br>
+
+    <label>Coffee Origin:
+        <input type="text" name="origin" maxlength="100">
+    </label><br>
+
+    <label>Coffee Decaf:
+        <input type="checkbox" name="isDecaf" value="true">
+    </label><br>
+
+    <label>Stock:
+        <input type="number" name="stock" required min="1">
+    </label><br>
+
+    <label>Flavor Notes:</label><br>
+    <input type="checkbox" name="flavorNotes" value="Chocolate"> Chocolate <br>
+    <input type="checkbox" name="flavorNotes" value="Citrus"> Citrus <br>
+    <input type="checkbox" name="flavorNotes" value="Nutty"> Nutty <br>
+    <input type="checkbox" name="flavorNotes" value="Creamy"> Creamy <br>
+    <input type="checkbox" name="flavorNotes" value="Sweet"> Sweet <br>
+    <input type="checkbox" name="flavorNotes" value="Fruity"> Fruity <br>
+    <input type="checkbox" name="flavorNotes" value="Bold"> Bold <br>
+    <input type="checkbox" name="flavorNotes" value="Smooth"> Smooth <br>
+    <input type="checkbox" name="flavorNotes" value="Balanced"> Balanced <br>
+    <input type="checkbox" name="flavorNotes" value="Caramel"> Caramel <br>
+    <input type="checkbox" name="flavorNotes" value="Almond"> Almond <br>
+    <input type="checkbox" name="flavorNotes" value="Cinnamon"> Cinnamon <br>
+    <input type="checkbox" name="flavorNotes" value="Woody"> Woody <br>
+    <input type="checkbox" name="flavorNotes" value="Vanilla"> Vanilla <br>
+
+    <label>Brew Method:
+        <select name="brewMethod" required>
+            <option value="" disabled selected>Select Brew Method</option>
+            <option value="Drip">Drip</option>
+            <option value="French Press">French Press</option>
+            <option value="Espresso">Espresso</option>
+        </select>
+    </label><br>
+
+    <!-- ✅ New: Image URL input -->
+    <label>Image URL:
+        <input type="text" name="imageUrl" placeholder="https://example.com/image.jpg" oninput="updateImagePreview(this.value)" required>
+    </label><br>
+
+    <!-- ✅ New: Live Image Preview -->
+    <div>
+        <strong>Image Preview:</strong><br>
+        <img id="imagePreview" src="" alt="Coffee Image Preview" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
+    </div>
+
+    <script>
+        function updateImagePreview(url) {
+            document.getElementById('imagePreview').src = url;
+        }
+    </script>
+
+    <br>
+    <button type="submit">Add Coffee</button>
+</form>
+
+<a href="/">Back to List</a>
+
+</body>
+</html>
+
+document.getElementById('imagePreview').src = url;
+}
+</script>
+
+<br>
+<button type="submit">Add Coffee</button>
+</form>
+
+<a href="/">Back to List</a>
+
+</body>
+</html>

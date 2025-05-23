@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<div th:if="${message}" class="message" th:text="${message}" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Ernest Coffee Shop</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f5f5f5; /* light gray background */
+        color: #212121; /* dark gray text */
+    }
+
+    .container {
+        display: flex;
+    }
+
+    .sidebar {
+        width: 240px;
+        background-color: #e0e0e0; /* very light gray */
+        padding: 2rem 1rem;
+        height: 100vh;
+        border-right: 1px solid #bdbdbd; /* medium gray border */
+        position: fixed;
+        box-shadow: 2px 0 8px rgba(189, 189, 189, 0.2); /* grayish shadow */
+    }
+
+    .sidebar h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        color: #424242; /* dark gray */
+    }
+
+    .sidebar a {
+        color: #424242; /* dark gray */
+        text-decoration: none;
+        display: block;
+        margin: 1rem 0;
+        font-weight: 500;
+    }
+
+    .sidebar a:hover {
+        color: #757575; /* darker gray on hover */
+    }
+
+    .main {
+        margin-left: 260px;
+        padding: 2rem;
+        width: 100%;
+    }
+
+    h1 {
+        color: #212121; /* almost black */
+        margin-bottom: 1.5rem;
+    }
+
+    .search-bar {
+        margin-bottom: 1.5rem;
+        background-color: #f5f5f5; /* very light gray */
+        padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 2px 5px rgba(189, 189, 189, 0.1);
+    }
+
+    .search-bar input {
+        padding: 0.6rem;
+        width: 250px;
+        border: 1px solid #bdbdbd; /* gray border */
+        border-radius: 6px;
+        margin-right: 0.5rem;
+        background: #fff;
+        color: #212121;
+    }
+
+    .btn {
+        background-color: #757575; /* dark gray */
+        border: none;
+        padding: 0.6rem 1.2rem;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .btn:hover {
+        background-color: #424242; /* even darker gray */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fafafa; /* slightly off-white */
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(189, 189, 189, 0.2);
+    }
+
+    th, td {
+        border-bottom: 1px solid #e0e0e0;
+        padding: 0.9rem 1rem;
+        text-align: left;
+    }
+
+    th {
+        background-color: #eeeeee; /* light gray */
+        color: #212121;
+        font-weight: 600;
+    }
+
+    tr:hover {
+        background-color: #f0f0f0;
+    }
+
+    .actions a {
+        color: #757575;
+        margin-right: 0.75rem;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .actions a:hover {
+        text-decoration: underline;
+    }
+
+    a.btn {
+        display: inline-block;
+        margin-top: 1rem;
+        text-decoration: none;
+    }
+    </style>
+
+
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <h2>☕ Coffee Admin</h2>
+        <a href="/">home</a>
+        <a href="/add">Add New Coffee</a>
+        <a href="/menu">Menu</a>
+        <a href="/logout">logout</a>
+
+
+    </div>
+
+    <div class="main">
+        <h1>Available Coffees</h1>
+
+        <div class="search-bar">
+            <form action="/search" method="get">
+                <input type="text" name="keyword" placeholder="Search coffee by name..." />
+                <button type="submit" class="btn">Search</button>
+            </form>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Coffee Name</th>
+                <th>Coffee Type</th>
+                <th>Coffee Size</th>
+                <th>Coffee Price</th>
+                <th>Coffee Roast Level</th>
+                <th>Coffee Origin</th>
+                <th>Decaf</th>
+                <th>Stock</th>
+                <th>Flavor Notes</th>
+                <th>Brew Method</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Loop through coffees -->
+            <tr th:each="coffee : ${coffees}">
+                <td th:text="${coffee.id}"></td>
+                <td th:text="${coffee.name}"></td>
+                <td th:text="${coffee.type}"></td>
+                <td th:text="${coffee.size}"></td>
+                <td th:text="${coffee.price}"></td>
+                <td th:text="${coffee.roastLevel}"></td>
+                <td th:text="${coffee.origin}"></td>
+                <td th:text="${coffee.decaf ? 'Yes' : 'No'}"></td>
+                <td th:text="${coffee.stock}"></td>
+                <td th:text="${coffee.flavorNotes}"></td>
+                <td th:text="${coffee.brewMethod}"></td>
+                <td class="actions">
+                    <a th:href="@{'/edit/' + ${coffee.id}}">Edit</a>
+                    <a th:href="@{'/delete/' + ${coffee.id}}" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a href="/add" class="btn">+ Add New Coffee</a>
+    </div>
+</div>
+</body>
+</html>
