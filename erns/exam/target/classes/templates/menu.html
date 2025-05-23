@@ -95,9 +95,9 @@
         <div th:each="coffee : ${coffees}" class="menu-item">
 
             <!-- Replace src with actual images if available -->
-            <img class="menu-img" th:src="@{/images/default-coffee.png}" alt="Coffee Image"/>
+            <img class="menu-img" th:src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG" alt="Coffee Image"/>
 
-            <h2 th:text="${coffee.name}">Coffee Name</h2>
+            <h2 th:text="${coffee.name}">black coffee</h2>
             <div class="description">
                 <span th:text="'Type: ' + ${coffee.type}"></span><br/>
                 <span th:text="'Size: ' + ${coffee.size}"></span><br/>

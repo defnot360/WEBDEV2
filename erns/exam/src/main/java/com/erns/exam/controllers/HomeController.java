@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -62,13 +62,18 @@ public class HomeController {
                              @RequestParam(defaultValue = "false") boolean isDecaf,
                              @RequestParam int stock,
                              @RequestParam List<String> flavorNotes,
-                             @RequestParam String brewMethod) {
+                             @RequestParam String brewMethod,
+                             @RequestParam("imageFile") MultipartFile imageFile) {
+
+        String imageUrl = saveImage(imageFile); // store and get path
 
         int newId = coffeeList.isEmpty() ? 1 : coffeeList.stream().mapToInt(Coffee::getId).max().getAsInt() + 1;
 
-        Coffee newCoffee = new Coffee(newId, name, type, size, price, roastLevel, origin, isDecaf, stock, flavorNotes, brewMethod);
-        coffeeList.add(newCoffee);
+        Coffee newCoffee = new Coffee(newId, name, type, size, price, roastLevel, origin,
+                isDecaf, stock, flavorNotes, brewMethod);
+        newCoffee.setImageUrl(imageUrl); // set image URL
 
+        coffeeList.add(newCoffee);
         return "redirect:/";
     }
 
@@ -114,6 +119,33 @@ public class HomeController {
         }
         return "redirect:/";
     }
+
+    private String saveImage(MultipartFile imageFile) {
+        if (imageFile == null || imageFile.isEmpty()) {
+            return null;
+        }
+
+        try {
+            // Get original filename
+            String filename = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
+
+            // Define the path to save the image
+            String uploadDir = "src/main/resources/static/uploads/";
+            java.nio.file.Path path = java.nio.file.Paths.get(uploadDir + filename);
+            java.nio.file.Files.createDirectories(path.getParent());
+
+            // Save file
+            java.nio.file.Files.write(path, imageFile.getBytes());
+
+            // Return relative path used in HTML
+            return "/uploads/" + filename;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     // Delete
     @GetMapping("/delete")
