@@ -1,0 +1,97 @@
+ :root {
+        --color-primary: #4B2E2E;
+        --color-accent: #855E42;
+        --color-text: #2D2D2D;
+        --color-surface: #FAF7F2;
+        --color-border: #E0D6C4;
+        --main-font: "Lora", serif;
+        --secondary-font: "Open Sans", sans-serif;
+        --background: #a3b18a;
+        --border-radius: 0.5rem;
+        --transition: all 0.3s ease-in-out;
+    }
+
+    main.catalog-container {
+        max-width: 100%;
+        box-sizing: border-box;
+        border-radius: 20px;
+        color: var(--color-surface);
+        box-shadow: 0 1px 15px 4px rgba(0, 0, 0, 0.36);
+        padding: 40px 20px;
+        width: 90%;
+        margin: 40px auto;
+    }
+
+    h1 {
+        color: var(--color-text);
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+
+    h1.catalog-title {
+        color: var(--color-text);
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 2rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card-coffee {
+        background: var(--color-border);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        color: var(--color-text);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .card-coffee:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-coffee img.coffee-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        border: 2px solid var(--color-border);
+    }
+
+    .card-coffee h3 {
+        font-size: 1.3rem;
+        color: var(--color-text);
+        margin-bottom: 0.5rem;
+    }
+
+    .card-coffee p {
+        font-size: 1rem;
+        color: var(--color-accent);
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .catalog-container {
+            padding: 1rem;
+        }
+
+        .card-coffee {
+            padding: 1rem;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+    }

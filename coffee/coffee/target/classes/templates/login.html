@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body {
+    background-color: #e3f2fd;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+    width: 320px;
+}
+
+.login-card h2 {
+    color: #1565c0;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #90caf9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #1565c0;
+    outline: none;
+}
+
+.input-error {
+    border-color: #e53935 !important;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+.error-global {
+    background-color: #ffcdd2;
+    color: #b71c1c;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #1976d2;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0d47a1;
+}
+
+.signup {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.signup a {
+    color: #1565c0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.signup a:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+}
+
+    </style>
+    <title>Login</title>
+    <link th:href="@{/css/login.css}" rel="stylesheet">
+</head>
+<body>
+<div class="login-container">
+    <form method="post" action="/login" th:object="${user}" class="login-card">
+        <h2>Login</h2>
+
+        <div th:if="${error}">
+            <p class="error-global" th:text="${error}"></p>
+        </div>
+
+        <div class="form-group">
+            <input type="text" name="username" placeholder="Username" th:field="*{username}"
+                   th:classappend="${#fields.hasErrors('username')} ? 'input-error' : '' ">
+            <p class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+        </div>
+
+        <div class="form-group">
+            <input type="password" name="password" placeholder="Password" th:field="*{password}"
+                   th:classappend="${#fields.hasErrors('password')} ? 'input-error' : '' ">
+            <p class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+        </div>
+
+        <button type="submit">LOGIN</button>
+
+        <div class="signup">
+            <a href="/register">Sign Up</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

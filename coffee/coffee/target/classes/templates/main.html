@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:replace="${docTitle}">Responsive Dash</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link th:replace="${customCss}"/>
+</head>
+<body>
+<aside>
+    <div class="sidebar-content">
+        <div class="brand">
+            <img src="/images/Logo.webp" alt="logo" />
+            <span>starbs</span>
+        </div>
+        <div class="menu">
+            <ul>
+                <li th:replace="components/menu_item :: menuItem('/','Home' , ${activeMenu == 'home' ? 'active' : ''})"></li>
+                <li th:replace="components/menu_item :: menuItem('/add','Add Coffee', ${activeMenu == 'new' ? 'active' : ''})"></li>
+                <li th:replace="components/menu_item :: menuItem('/catalog','Coffee Menu', ${activeMenu == 'catalog' ? 'active' : ''})"></li>
+                <li th:replace="components/menu_item :: menuItem('/logout', 'Logout', ${activeMenu == 'logout' ? 'active' : ''})"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="user-profile">
+        <img src="/images/profile.webp" alt="Ernesto-profile" />
+        <div>
+            <h1>Ernesto Briones</h1>
+            <span>Project Owner</span>
+        </div>
+    </div>
+</aside>
+<main th:replace="${content}">dynamic content will appear here</main>
+<script>
+    window.addEventListener('load', function () {
+
+        document.querySelectorAll('.menu li').forEach(menu => {
+            menu.addEventListener('click', () => {
+                const url = menu.getAttribute('data-url');
+                location.href = url; //this will redirect to the url
+            });
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --color-bg: #eaf6ff;                /* Soft light blue background */
+    --color-surface: #f5faff;           /* Near-white with a bluish hue */
+    --color-primary: #1e81b0;           /* Bold blue */
+    --color-text: #1c3d5a;              /* Deep navy for contrast */
+    --color-border: #a7d4f2;            /* Light blue border */
+    --color-accent: #90cdf4;            /* Soft pastel blue accent */
+    --border-radius: 0.75rem;
+    --transition: all 0.2s ease-in-out;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    margin: 0;
+    padding: 2rem;
+}
+
+.student-card {
+    background: var(--color-surface);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    max-width: 720px;
+    margin: auto;
+    box-shadow: 0 4px 12px rgba(30, 129, 176, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid var(--color-primary);
+}
+
+.profile h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+    color: var(--color-primary);
+}
+
+.profile p {
+    font-size: 1rem;
+    color: var(--color-accent);
+}
+
+.details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2rem;
+    font-size: 1rem;
+}
+
+.details div {
+    background: #dbefff; /* very light blue */
+    padding: 0.75rem 1rem;
+    border-left: 4px solid var(--color-primary);
+    border-radius: var(--border-radius);
+}
+
+.details > .flavor-notes ul {
+    list-style: none;
+    text-decoration: none;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-primary);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    margin-top: 2rem;
+}
+
+.button:hover {
+    background: var(--color-accent);
+    color: var(--color-primary);
+}
