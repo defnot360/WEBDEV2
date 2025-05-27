@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:fragment="title">Coffee Catalog</title>
+    <link rel="stylesheet" href="/css/menu.css" th:fragment="link">
+</head>
+<body>
+
+<th:block th:replace="layout/main :: html(content=~{::main}, docTitle=~{::title}, customCss=~{::link})"/>
+
+<main class="catalog-container" th:fragment="main">
+    <h1 class="catalog-title">Our Coffee Selection</h1>
+    <div class="card-grid">
+        <div th:each="coffee : ${coffee}">
+            <div th:replace="components/coffee_card :: coffeePo(coffee=${coffee})"></div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

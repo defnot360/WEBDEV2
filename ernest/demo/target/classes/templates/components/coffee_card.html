@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="coffeePo(coffee)">
+    <div class="card-coffee">
+        <img th:if="${coffee.coffeePicture != null}"
+             th:src="@{'/' + ${coffee.coffeePicture}}"
+             class="coffee-image"
+             alt="Coffee Image">
+
+        <img th:if="${coffee.coffeePicture == null}"
+             th:src="@{'/images/coffee.png'}"
+             class="coffee-image"
+             alt="Default Coffee">
+
+        <h3 th:text="${coffee.name}"></h3>
+        <p><strong th:text="'$' + ${coffee.price}"></strong></p>
+    </div>
+</div>

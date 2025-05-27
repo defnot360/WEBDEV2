@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <title>Edit Coffee</title>
+  <link rel="stylesheet" th:href="@{/css/create.css}">
+
+</head>
+<body>
+
+<div class="form-container">
+  <h1 th:text="'Edit ' + ${coffeeExam.name}"></h1>
+  <form th:action="@{/update}" method="post" th:object="${coffeeExam}">
+    <input type="hidden" th:field="*{id}"/>
+
+    <div>
+      <label for="name">Name</label>
+      <input type="text" id="name" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? 'error' : ''"/>
+      <p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    </div>
+
+    <div>
+      <label for="type">Type</label>
+      <select id="type" th:field="*{type}">
+        <option th:each="type : ${types}" th:value="${type}" th:text="${type}"></option>
+      </select>
+      <p class="error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p>
+    </div>
+
+    <div>
+      <label>Size</label>
+      <select th:field="*{size}" id="size">
+        <option th:each="size : ${sizes}" th:value="${size}" th:text="${size}"></option>
+      </select>
+    </div>
+
+    <div>
+      <label>Price</label>
+      <input type="number" step="0.01" th:field="*{price}" placeholder="Price"/>
+    </div>
+
+    <div>
+      <label>Roast Level</label>
+      <select th:field="*{roastLevel}" id="roastLevel">
+        <option th:each="roastLevel : ${roastLevels}" th:value="${roastLevel}" th:text="${roastLevel}"></option>
+      </select>
+      <p class="error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p>
+    </div>
+
+    <div>
+      <label>Coffee Origin</label>
+      <input type="text" th:field="*{origin}" placeholder="Origin"/>
+    </div>
+
+    <div>
+      <label>Decaf</label>
+      <input type="checkbox" th:field="*{decaf}" value="yes"/>
+    </div>
+
+    <div>
+      <label>Stock</label>
+      <input type="number" th:field="*{stock}" placeholder="Stock"/>
+    </div>
+
+    <div class="form-group">
+      <div class="flavor-notes-container">
+        <label>Flavor Notes (select all that apply):</label>
+        <div>
+          <label for="edit-chocolate">Chocolate</label>
+          <input type="checkbox" name="flavorNotes" value="Chocolate" id="edit-chocolate"
+                 th:checked="${#strings.contains(coffeeExam.flavorNotes, 'Chocolate')}">
+        </div>
+        <div>
+          <label for="edit-creamy">Creamy</label>
+          <input type="checkbox" name="flavorNotes" value="Creamy" id="edit-creamy"
+                 th:checked="${#strings.contains(coffeeExam.flavorNotes, 'Creamy')}">
+        </div>
+        <div>
+          <label for="edit-sweet">Sweet</label>
+          <input type="checkbox" name="flavorNotes" value="Sweet" id="edit-sweet"
+                 th:checked="${#strings.contains(coffeeExam.flavorNotes, 'Sweet')}">
+        </div>
+        <div>
+          <label for="edit-bold">Bold</label>
+          <input type="checkbox" name="flavorNotes" value="Bold" id="edit-bold"
+                 th:checked="${#strings.contains(coffeeExam.flavorNotes, 'Bold')}">
+        </div>
+        <div>
+          <label for="edit-nutty">Nutty</label>
+          <input type="checkbox" name="flavorNotes" value="Nutty" id="edit-nutty"
+                 th:checked="${#strings.contains(coffeeExam.flavorNotes, 'Nutty')}">
+        </div>
+        <div>
+          <label for="edit-steamed_milk">Steamed Milk</label>
+          <input type="checkbox" name="flavorNotes" value="Steamed Milk" id="edit-steamed_milk"
+                 th:checked="${#strings.contains(coffeeExam.flavorNotes, 'Steamed Milk')}">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <label for="brewMethods">Brew Method</label>
+      <select th:field="*{brewMethod}" id="brewMethods">
+        <option th:each="method : ${brewMethods}" th:value="${method}" th:text="${method}"></option>
+      </select>
+    </div>
+
+
+    <div class="action">
+      <a th:href="@{/}" class="button-cancel">Cancel</a>
+      <button>Update Coffee</button>
+      <a href="/">Back to List</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>

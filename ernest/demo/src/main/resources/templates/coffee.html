@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>View Student | [[${coffeeExam.name}]]</title>
+  <link rel="stylesheet" href="/css/coffee-detail.css">
+</head>
+<body>
+
+<div class="student-card">
+  <div class="profile">
+    <!-- If student has uploaded a profile picture -->
+    <img th:if="${coffeeExam.coffeePicture != null}"
+         th:src="@{'/' + ${coffeeExam.coffeePicture}}"
+         alt="Profile Picture">
+
+    <!-- If no picture, fallback to default -->
+    <img th:if="${coffeeExam.coffeePicture == null}"
+         th:src="@{'/images/default-coffee.png'}"
+         alt="Default Picture">
+    <h2 th:text="${coffeeExam.name}"></h2>
+    <p th:text="'₱' + ${coffeeExam.price}"></p>
+  </div>
+
+  <div class="details">
+    <div><strong>Type:</strong> <span th:text="${coffeeExam.type}"></span></div>
+    <div><strong>Size:</strong> <span th:text="${coffeeExam.size}"></span></div>
+    <div><strong>Roast Level:</strong> <span th:text="${coffeeExam.roastLevel}"></span></div>
+    <div><strong>Brew Method:</strong> <span th:text="${coffeeExam.brewMethod}"></span></div>
+    <div><strong>Origin:</strong> <span th:text="${coffeeExam.origin}"></span></div>
+    <div><strong>Stock:</strong> <span th:text="${coffeeExam.stock}"></span></div>
+    <div><strong>Decaf:</strong> <span th:text="${coffeeExam.decaf}"></span></div>
+    <div class="flavor-notes"><strong>Flavor Notes:</strong>
+      <ul>
+        <li th:each="note : ${coffeeExam.flavorNotes}" th:text="${note}"></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<a href="/" class="button">Back</a>
+</body>
+</html>
