@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Car</title>
+</head>
+<body>
+<h1>Edit Car</h1>
+<form th:action="@{'/update/' + ${carDTO.id}}" th:object="${carDTO}" method="post">
+    <label>Make:</label>
+    <input type="text" th:field="*{make}" />
+    <p class="error" th:if="${#fields.hasErrors('make')}" th:errors="*{make}"></p>
+
+    <label>Model:</label>
+    <input type="text" th:field="*{model}" />
+    <p class="error" th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></p>
+
+    <label>Year:</label>
+    <input type="number" th:field="*{year}" />
+    <p class="error" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></p>
+
+    <label>Color:</label>
+    <input type="text" th:field="*{color}" />
+    <p class="error" th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></p>
+
+    <label>Body Type:</label>
+    <input type="text" th:field="*{bodyType}" />
+    <p class="error" th:if="${#fields.hasErrors('bodyType')}" th:errors="*{bodyType}"></p>
+
+    <label>Engine Type:</label>
+    <input type="text" th:field="*{engineType}" />
+    <p class="error" th:if="${#fields.hasErrors('engineType')}" th:errors="*{engineType}"></p>
+
+    <label>License Plate:</label>
+    <input type="text" th:field="*{licensePlate}" />
+    <p class="error" th:if="${#fields.hasErrors('licensePlate')}" th:errors="*{licensePlate}"></p>
+
+    <button type="submit">Update</button>
+</form>
+<a th:href="@{/}">Cancel</a>
+</body>
+</html>

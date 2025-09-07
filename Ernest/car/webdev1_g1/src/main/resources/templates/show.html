@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="|${car.make} ${car.model}|">Car Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #111;
+            color: #eaeaea;
+            padding: 2rem;
+        }
+        h1 {
+            margin-bottom: 1rem;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 0.5rem 0;
+            background: #1a1a1a;
+            padding: 0.7rem;
+            border-radius: 6px;
+        }
+        a.btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background-color: #2b2b2b;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        a.btn:hover {
+            background-color: #888;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<h1>Car Details</h1>
+<ul>
+    <li>Make: <span th:text="${car.make}">Toyota</span></li>
+    <li>Model: <span th:text="${car.model}">Camry</span></li>
+    <li>Year: <span th:text="${car.year}">2023</span></li>
+    <li th:if="${car.color}">Color: <span th:text="${car.color}"></span></li>
+    <li th:if="${car.bodyType}">Body: <span th:text="${car.bodyType}"></span></li>
+    <li th:if="${car.engineType}">Engine: <span th:text="${car.engineType}"></span></li>
+    <li th:if="${car.licensePlate}">License Plate: <span th:text="${car.licensePlate}"></span></li>
+</ul>
+<a th:href="@{/}" class="btn">Back to Home</a>
+</body>
+</html>
+
